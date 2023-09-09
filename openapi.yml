@@ -1,0 +1,62 @@
+openapi: 3.0.0
+
+info:
+    title: Free IP API
+    description: A free IP lookup API
+    version: "v1"
+
+servers:
+    - url: https://freeipapi.com/api/
+
+paths:
+    /json/{ipaddress}:
+        get:
+            operationId: lookupIpAddressGeolocation
+            summary: Lookup IP Address Geolocation information
+            parameters:
+                - in: path
+                  name: ipaddress
+                  schema:
+                      type: string
+                  required: true
+                  description: The ip address to lookup
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/lookupIpAddressGeolocationResponse"
+
+components:
+    schemas:
+        lookupIpAddressGeolocationResponse:
+            type: object
+            properties:
+                ipVersion:
+                    type: integer
+                    description: The IP address version
+                ipAddress:
+                    type: string
+                    description: The IP address
+                latitude:
+                    type: number
+                    description: The latutude
+                longitude:
+                    type: number
+                    description: The longitude
+                countryName:
+                    type: string
+                    description: The country
+                zipCode:
+                    type: string
+                    description: The zip code
+                cityName:
+                    type: string
+                    description: The city
+                regionName:
+                    type: string
+                    description: The region
+                continent:
+                    type: string
+                    description: The continent
